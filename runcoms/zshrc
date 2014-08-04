@@ -12,3 +12,12 @@ fi
 
 # Customize to your needs...
 
+bindkey -M vicmd '/' history-incremental-search-backward
+bindkey -M vicmd '?' history-incremental-search-forward
+
+# Push the current buffer onto the buffer stack and clear the buffer. 
+# Next time the editor starts up, the buffer will be popped off the top of
+# the buffer stack and loaded into the editing buffer.
+bindkey -M vicmd "q" push-line-or-edit
+
+bindkey ' ' magic-space
