@@ -21,3 +21,20 @@ bindkey -M vicmd '?' history-incremental-search-forward
 bindkey -M vicmd "q" push-line-or-edit
 
 bindkey ' ' magic-space
+
+# Default hook for local zshrc file
+zshrcFiles=("${HOME}/.zshrc.local")
+
+# Hook for OS specific file
+OS=`uname`
+if [ "${OS}" = "Darwin" ]; then
+  OS=mac
+fi
+zshrcFiles+=("${HOME}/.zshrc.${OS}")
+
+# Sourcing hook files if available
+for zf in $zshrcFiles; do
+  if [[ -f $zf ]]; then
+    source $zf
+  fi
+done
