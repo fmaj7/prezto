@@ -1,0 +1,4 @@
+export JAVA_HOME=`/usr/libexec/java_home -v 1.7`
+export PATH="$JAVA_HOME/bin/:$PATH"
+PERL_MB_OPT="--install_base \"/Users/guanghao/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/Users/guanghao/perl5"; export PERL_MM_OPT;

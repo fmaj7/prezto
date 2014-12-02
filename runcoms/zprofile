@@ -75,3 +75,21 @@ if [[ ! -d "$TMPPREFIX" ]]; then
   mkdir -p "$TMPPREFIX"
 fi
 
+
+# Default hook for local zprofile file
+
+zprofileFiles=("${HOME}/.zprofile.local")
+
+# Hook for OS specific file
+OS=`uname`
+if [ "${OS}" = "Darwin" ]; then
+  OS=mac
+fi
+zprofileFiles+=("${HOME}/.zprofile.${OS}")
+
+# Sourcing hook files if available
+for zf in $zprofileFiles; do
+  if [[ -f $zf ]]; then
+    source $zf
+  fi
+done
