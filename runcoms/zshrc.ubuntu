@@ -1,0 +1,21 @@
+PERL_MB_OPT="--install_base \"/home/local/ANT/guanghao/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/local/ANT/guanghao/perl5"; export PERL_MM_OPT;
+
+#---------------------------- Locale/Encoding of terminal --------------------
+export LC_ALL=en_US.UTF-8
+export LANG="$LC_ALL"
+export LANGUAGE="en_US:en"
+
+#--------------------------- Git -----------------
+export GIT_SSH=/usr/bin/ssh
+
+#------------------------- Java-------------------------------------------
+export JAVA_HOME="/usr/lib/jvm/java-7-openjdk-amd64/"
+
+#----------------------------------------EC2 ---------------------------------
+export EC2_HOME=/usr/local/ec2/ec2-api-tools-1.7.0.2
+export PATH=$PATH:$EC2_HOME/bin
+
+#-----------rbenv----------------------------------
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"

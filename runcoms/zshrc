@@ -22,17 +22,49 @@ bindkey -M vicmd "q" push-line-or-edit
 
 bindkey ' ' magic-space
 
-# Default hook for local zshrc file
+#------------------ mark and jump directories -------------------------
+export MARKPATH=$HOME/.marks
+function jump { 
+    cd -P "${MARKPATH}/$1" 2>/dev/null || echo "no such mark: $1"
+}
+function mark { 
+    if (( $# == 0 )); then
+        MARK=$(basename "$(pwd)")
+    else
+        MARK="$1"
+    fi
+    if read -q \?"mark $(pwd) as ${MARK}? (y/n) "; then
+	echo $MARKPATH
+        mkdir -p "${MARKPATH}"; ln –s "$(pwd)" "${MARKPATH}/${MARK}"
+    fi
+}
+function unmark { 
+    rm -i "${MARKPATH}/$1"
+}
+function marks {
+    ls -l "${MARKPATH}" | sed 's/  / /g' | cut -d' ' -f9- | sed 's/ -/\t-/g' && echo
+}
+
+#----------------- Hook for local zshrc file ---------------------
 zshrcFiles=("${HOME}/.zshrc.local")
 
-# Hook for OS specific file
+#------------------ Hook for OS specific file ----------------------------
 OS=`uname`
+
+if [ "${OS}" = 'Linux' ]; then
+    OS_DIST=$(lsb_release -si)
+    if [ "${OS_DIST}" = 'Ubuntu' ]; then
+        OS=ubuntu
+    fi
+fi
+
 if [ "${OS}" = "Darwin" ]; then
   OS=mac
 fi
+
 zshrcFiles+=("${HOME}/.zshrc.${OS}")
 
-# Sourcing hook files if available
+#------------------- Sourcing hook files if available -------------------
 for zf in $zshrcFiles; do
   if [[ -f $zf ]]; then
     source $zf
