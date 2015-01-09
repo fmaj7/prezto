@@ -5,3 +5,5 @@ PERL_MM_OPT="INSTALL_BASE=/Users/guanghao/perl5"; export PERL_MM_OPT;
 
 export JAVA_8_HOME=`/usr/libexec/java_home -v 1.8`
 alias java8="$JAVA_8_HOME/bin/java"
+
+export PATH="$HOME/home/bin:$PATH"
