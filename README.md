@@ -3,9 +3,7 @@ Prezto — My Installation
 
         git clone --recursive https://github.com/fmaj7/prezto.git
         setopt EXTENDED_GLOB
-        for rcfile in prezto/runcoms/^README.md(.N); do
-          ln -s "$rcfile" "$HOME/.${rcfile:t}"
-        done
+        for rcfile in prezto/runcoms/^README.md(.N); do echo "ln -s $PWD/$rcfile $HOME/.${rcfile:t}" && rm $HOME/.${rcfile:t} && ln -s "$PWD/$rcfile" "$HOME/.${rcfile:t}"; done
 
 
 Prezto — Instantly Awesome Zsh
