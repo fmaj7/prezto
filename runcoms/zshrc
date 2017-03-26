@@ -70,3 +70,7 @@ for zf in $zshrcFiles; do
     source $zf
   fi
 done
+
+#-------------------- https://github.com/direnv/direnv -------
+eval "$(direnv hook zsh)"
+
